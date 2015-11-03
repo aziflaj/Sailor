@@ -8,70 +8,62 @@
 module.exports = {
 
 	/**
-   * `Api/v1/ShipController.index()`
+   * List all the records
 	 * @method GET
+   * @route /ship
    */
-  index: function (req, res) {
+  find: function (req, res) {
     return res.json({
       todo: 'index() is not implemented yet!',
 			should: 'display a list of all ships'
     });
   },
 
-
   /**
-   * `Api/v1/ShipController.new()`
-	 * @method GET
+   * Information about a single ship
+   * @method GET
+   * @route /ship/:id
    */
-  new: function (req, res) {
-    return res.json({
-      todo: 'new() is not implemented yet!',
-			should: 'return a form for adding a new ship'
-    });
-  },
-
-
-  /**
-   * `Api/v1/ShipController.create()`
-	 * @method POST
-   */
-  create: function (req, res) {
-    return res.json({
-      todo: 'create() is not implemented yet!',
-			should: 'create a new message'
-    });
-  },
-
-
-  /**
-   * `Api/v1/ShipController.show()`
-	 * @method GET
-   */
-  show: function (req, res) {
+  findOne: function (req, res) {
+    console.log(req.params.id);
     return res.json({
       todo: 'show() is not implemented yet!',
-			route: 'ship/:id',
-			should: 'display a specific ship'
+      should: 'display a specific ship'
     });
   },
 
-
   /**
-   * `Api/v1/ShipController.edit()`
-	 * @method GET
+   * Craete a new ship instance
+	 * @method POST
+   * @route /ship
    */
-  edit: function (req, res) {
+  create: function (req, res) {
+		// var newShip = {
+		// 	shipType: '...',
+		// 	description: '...'
+		// };
+		//
+		// Ship.create(newShip, function (error, created) {
+    //   if (error) {
+    //     console.log('error');
+    //   }
+    //   console.log('Object saved with id ' + created.id);
+		//
+    //   return res.json({
+	  //     status: 'Object saved with id ' + created.id
+	  //   });
+    // });
+
     return res.json({
-      todo: 'edit() is not implemented yet!',
-			route: 'ship/:id/edit',
-			should: 'display a form for editing a specific ship'
+      todo: 'create() is not implemented yet!',
+			should: 'create a new ship'
     });
   },
 
-
   /**
-   * `Api/v1/ShipController.update()`
+   * Update an existing Ship
 	 * @method PUT
+   * @route /ship/:id
    */
   update: function (req, res) {
     return res.json({
@@ -83,8 +75,9 @@ module.exports = {
 
 
   /**
-   * `Api/v1/ShipController.destroy()`
+   * Delete an existing ship
 	 * @method DELETE
+   * @route /ship/:id
    */
   destroy: function (req, res) {
     return res.json({
