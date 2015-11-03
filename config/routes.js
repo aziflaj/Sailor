@@ -34,7 +34,7 @@ module.exports.routes = {
 
   '/': {
     view: 'homepage'
-  }
+  },
 
   /***************************************************************************
   *                                                                          *
@@ -45,5 +45,11 @@ module.exports.routes = {
   * for configuration options and examples.                                  *
   *                                                                          *
   ***************************************************************************/
+
+  'GET /api/v1/ship': 'Api/v1/ShipController.find',
+  'POST /api/v1/ship': 'Api/v1/ShipController.create',
+  'GET /api/v1/ship/:id': 'Api/v1/ShipController.findOne',
+  'PUT /api/v1/ship/:id': 'Api/v1/ShipController.update',
+  'DELETE /api/v1/ship/:id': 'Api/v1/ShipController.destroy'
 
 };
