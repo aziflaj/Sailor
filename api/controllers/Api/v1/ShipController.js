@@ -13,9 +13,12 @@ module.exports = {
    * @route /ship
    */
   find: function (req, res) {
-    return res.json({
-      todo: 'index() is not implemented yet!',
-			should: 'display a list of all ships'
+    Ship.find({}).exec(function (error, found) {
+      if (error) {
+        console.log(error);
+      } else {
+        return res.json(found);
+      }
     });
   },
 
@@ -26,9 +29,12 @@ module.exports = {
    */
   findOne: function (req, res) {
     console.log(req.params.id);
-    return res.json({
-      todo: 'show() is not implemented yet!',
-      should: 'display a specific ship'
+    Ship.find({id: req.params.id}).exec(function (error, found) {
+      if (error) {
+        console.log(error);
+      } else {
+        return res.json(found);
+      }
     });
   },
 
@@ -38,25 +44,19 @@ module.exports = {
    * @route /ship
    */
   create: function (req, res) {
-		// var newShip = {
-		// 	shipType: '...',
-		// 	description: '...'
-		// };
-		//
-		// Ship.create(newShip, function (error, created) {
-    //   if (error) {
-    //     console.log('error');
-    //   }
-    //   console.log('Object saved with id ' + created.id);
-		//
-    //   return res.json({
-	  //     status: 'Object saved with id ' + created.id
-	  //   });
-    // });
+		var newShip = {
+			shipType: req.body.type,
+			description: req.body.description
+		};
 
-    return res.json({
-      todo: 'create() is not implemented yet!',
-			should: 'create a new ship'
+		Ship.create(newShip, function (error, created) {
+      if (error) {
+        console.log(error);
+      } else {
+        return res.json({
+  	      status: 'Object saved with id ' + created.id
+  	    });
+      }
     });
   },
 
