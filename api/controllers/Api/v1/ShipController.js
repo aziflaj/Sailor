@@ -1,7 +1,8 @@
 /**
  * Api/v1/ShipController
  *
- * @description :: Server-side logic for managing api/v1/ships
+ * @description :: Server-side logic for managing api/v1/ship route
+ * @route       :: api/v1/ship
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
@@ -10,7 +11,7 @@ module.exports = {
 	/**
    * List all the records
 	 * @method GET
-   * @route /ship
+   * @route /
    */
   find: function (req, res) {
     Ship.find({}).exec(function (error, found) {
@@ -25,7 +26,7 @@ module.exports = {
   /**
    * Information about a single ship
    * @method GET
-   * @route /ship/:id
+   * @route /:id
    */
   findOne: function (req, res) {
     console.log(req.params.id);
@@ -41,7 +42,7 @@ module.exports = {
   /**
    * Craete a new ship instance
 	 * @method POST
-   * @route /ship
+   * @route /
    */
   create: function (req, res) {
 		var newShip = {
@@ -63,7 +64,7 @@ module.exports = {
   /**
    * Update an existing Ship
 	 * @method PUT
-   * @route /ship/:id
+   * @route /:id
    */
   update: function (req, res) {
     return res.json({
@@ -77,7 +78,7 @@ module.exports = {
   /**
    * Delete an existing ship
 	 * @method DELETE
-   * @route /ship/:id
+   * @route /:id
    */
   destroy: function (req, res) {
     return res.json({
