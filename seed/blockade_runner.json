@@ -1,4 +1,5 @@
 {
-  "type": "Blockade runner",
-  "description": "A ship whose current business is to slip past a blockade."
+  "ship_type": "Blockade runner",
+  "description": "A ship whose current business is to slip past a blockade.",
+  "img": "https://upload.wikimedia.org/wikipedia/commons/8/8d/SS_Banshee.jpg"
 }

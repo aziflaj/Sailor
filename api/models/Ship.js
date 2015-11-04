@@ -7,7 +7,7 @@
 
 module.exports = {
   attributes: {
-    shipType: {
+    ship_type: {
       type: 'string',
       required: true
     },
@@ -15,6 +15,11 @@ module.exports = {
     description: {
       type: 'string',
       defaultsTo: 'Should add description'
+    },
+
+    img: {
+      type: 'string',
+      required: true
     }
   }
 };

@@ -1,4 +1,5 @@
 {
-  "type": "Barque",
-  "description": "A sailing vessel with three or more masts, fore-and-aft rigged on only the aftermost."
+  "ship_type": "Barque",
+  "description": "A sailing vessel with three or more masts, fore-and-aft rigged on only the aftermost.",
+  "img": "https://upload.wikimedia.org/wikipedia/commons/9/9c/Nippon_maru_II_in_yokohama_20090720.jpg"
 }

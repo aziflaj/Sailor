@@ -46,8 +46,9 @@ module.exports = {
    */
   create: function (req, res) {
 		var newShip = {
-			shipType: req.body.type,
-			description: req.body.description
+			ship_type: req.body.ship_type,
+			description: req.body.description,
+      img: req.body.img
 		};
 
 		Ship.create(newShip, function (error, created) {

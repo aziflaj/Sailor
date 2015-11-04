@@ -1,4 +1,5 @@
 {
-  "type": "Battleship",
-  "description": "A large, heavily armoured and heavily gunned warship. A term which generally post-dates sailing warships."
+  "ship_type": "Battleship",
+  "description": "A large, heavily armoured and heavily gunned warship. A term which generally post-dates sailing warships.",
+  "img": "https://upload.wikimedia.org/wikipedia/commons/e/ea/BB61_USS_Iowa_BB61_broadside_USN.jpg"
 }
