@@ -1,8 +1,8 @@
 {
-  "name": "sailor",
+  "name": "Sailor",
   "private": true,
-  "version": "0.0.0",
-  "description": "a Sails application",
+  "version": "0.1.0",
+  "description": "A sample Sails application, showing information about different types of ships",
   "keywords": [],
   "dependencies": {
     "ejs": "~0.8.4",
@@ -31,7 +31,7 @@
   "main": "app.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/aziflaj/sailor.git"
+    "url": "git://github.com/aziflaj/Sailor.git"
   },
   "author": "aziflaj",
   "license": ""
