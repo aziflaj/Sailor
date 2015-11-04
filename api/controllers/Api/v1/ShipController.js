@@ -14,11 +14,15 @@ module.exports = {
    * @route /
    */
   find: function (req, res) {
-    Ship.find({}).exec(function (error, found) {
+    Ship.find({}).exec(function (error, result) {
       if (error) {
         console.log(error);
       } else {
-        return res.json(found);
+        var response = {
+          status: 'success',
+          ships: result
+        };
+        return res.json(response);
       }
     });
   },
@@ -30,11 +34,15 @@ module.exports = {
    */
   findOne: function (req, res) {
     console.log(req.params.id);
-    Ship.find({id: req.params.id}).exec(function (error, found) {
+    Ship.find({id: req.params.id}).exec(function (error, result) {
       if (error) {
         console.log(error);
       } else {
-        return res.json(found);
+        var response = {
+          status: 'success',
+          ship: result
+        };
+        return res.json(response);
       }
     });
   },
@@ -55,9 +63,12 @@ module.exports = {
       if (error) {
         console.log(error);
       } else {
-        return res.json({
-  	      status: 'Object saved with id ' + created.id
-  	    });
+        var response = {
+          status: 'success',
+          message: 'Object saved with id: ' + created.id,
+          id: created.id
+        };
+        return res.json(response);
       }
     });
   },

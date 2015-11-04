@@ -21,8 +21,4 @@ module.exports = {
   //   connection: 'someMongodbServer'
   // }
 
-  models: {
-    migrate: 'drop'
-  }
-
 };
