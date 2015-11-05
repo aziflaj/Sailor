@@ -56,6 +56,7 @@ module.exports = {
 		var newShip = {
 			ship_type: req.body.ship_type,
 			description: req.body.description,
+      details: req.body.details,
       img: req.body.img
 		};
 

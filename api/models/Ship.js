@@ -14,7 +14,12 @@ module.exports = {
 
     description: {
       type: 'string',
-      defaultsTo: 'Should add description'
+      defaultsTo: 'Description missing'
+    },
+
+    details: {
+      type: 'string',
+      defaultsTo: 'Details missing'
     },
 
     img: {
