@@ -80,10 +80,38 @@ module.exports = {
    * @route /:id
    */
   update: function (req, res) {
-    return res.json({
-      todo: 'update() is not implemented yet!',
-			route: 'ship/:id',
-			should: 'update a specific ship'
+    Ship.find({id: req.params.id}).exec(function (error, found) {
+      if (error) {
+        console.log(error);
+      } else {
+        var item = found.pop();
+
+        if (req.body.ship_type) {
+          item.ship_type = req.body.ship_type;
+        }
+        if (req.body.description) {
+          item.description = req.body.description;
+        }
+        if (req.body.details) {
+          item.details = req.body.details;
+        }
+        if (req.body.img) {
+          item.img = req.body.img;
+        }
+
+        item.save(function (err, s) {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log('saved');
+            var response = {
+              status: 'saved',
+              ship: item
+            };
+            return res.json(response);
+          }
+        });
+      }
     });
   },
 
