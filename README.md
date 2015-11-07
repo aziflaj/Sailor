@@ -3,7 +3,11 @@
 This is the 4th project for my **52 weeks, 52 projects** challenge. It is a sample API developed with a Node.js framework called [Sails](http://sailsjs.org/).
 
 ## Prerequisites
-In order to use this application, you'll need [Node.js](https://nodejs.org/en/) and npm (the Node Package Manager) installed and also a local [MongoDB](http://www.mongodb.org/) instance.
+In order to use this application, you'll need [Node.js](https://nodejs.org/en/) and npm (the Node Package Manager) installed and also a local [MongoDB](http://www.mongodb.org/) instance. Make sure to import the exported MongoDB data:
+
+```bash
+$ mongoimport --db ships --collection ship --file ships.json
+```
 
 
 ## Run the Application
