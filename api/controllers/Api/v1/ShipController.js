@@ -3,7 +3,6 @@
  *
  * @description :: Server-side logic for managing api/v1/ship route
  * @route       :: api/v1/ship
- * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
 module.exports = {
@@ -103,7 +102,6 @@ module.exports = {
           if (err) {
             console.log(err);
           } else {
-            console.log('saved');
             var response = {
               status: 'saved',
               ship: item
@@ -122,10 +120,17 @@ module.exports = {
    * @route /:id
    */
   destroy: function (req, res) {
-    return res.json({
-      todo: 'destroy() is not implemented yet!',
-			route: 'ship/:id',
-			should: 'delete a specific ship'
+    console.log(req.params.id);
+
+    Ship.destroy({id: req.params.id}).exec(function (error) {
+      if (error) {
+        console.log(error);
+      } else {
+        var response = {
+          status: 'deleted'
+        };
+        return res.json(response);
+      }
     });
   }
 };
