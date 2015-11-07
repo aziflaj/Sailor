@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ $# -ne 2 ]; then
-  echo "Usage: $0 <update-file> <id>"
+  echo "Usage: $0 <json-file> <id>"
   exit
 fi
 
