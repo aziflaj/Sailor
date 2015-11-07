@@ -19,6 +19,6 @@ Finally, browse to [http://localhost:1337/api/v1/ship](http://localhost:1337/api
 
 There are a couple of shell scripts included in this repository. I used them for testing the `POST`, `PUT` and `DELETE` functionality.
 
-- The `shells/seeder.sh` file seeds the database by actually sending a `POST` request, posting the JSON files in the `shells/seed/` folder.
+- The `shells/seeder.sh` file seeds the database by actually sending a `POST` request, posting the JSON files in the [`shells/seed/`](https://github.com/aziflaj/Sailor/tree/master/shells/seed) folder.
 - The `shells/put.sh` file sends a `PUT` request to update a given object. You should pass a JSON file as command-line argument (containing the updated data) and also the ID of the object.
 - The `shells/delete.sh` sends a `DELETE` request to remove a given object from the DB. You should pass the ID of the object as command-line argument.
