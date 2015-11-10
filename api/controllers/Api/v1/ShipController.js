@@ -88,18 +88,10 @@ module.exports = {
       } else {
         var item = found.pop();
 
-        if (req.body.ship_type) {
-          item.ship_type = req.body.ship_type;
-        }
-        if (req.body.description) {
-          item.description = req.body.description;
-        }
-        if (req.body.details) {
-          item.details = req.body.details;
-        }
-        if (req.body.img) {
-          item.img = req.body.img;
-        }
+        item.ship_type = req.body.ship_type || item.ship_type;
+        item.description = req.body.description || item.description;
+        item.details = req.body.details || item.details;
+        item.img = req.body.img || item.img;
 
         item.save(function (err, s) {
           if (err) {
