@@ -1,5 +1,6 @@
 {
   "ship_type": "Cruiser",
   "description": "A warship that is larger than a destroyer, but smaller than a battleship.",
-  "img": "https://upload.wikimedia.org/wikipedia/commons/4/4b/USS_Port_Royal_CG-73.jpg"
+  "img": "https://upload.wikimedia.org/wikipedia/commons/4/4b/USS_Port_Royal_CG-73.jpg",
+  "details": "This is a Cruiser"
 }

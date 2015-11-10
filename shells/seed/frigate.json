@@ -1,5 +1,6 @@
 {
   "ship_type": "Frigate",
   "description": "A term used for warships of many sizes and roles over the past few centuries.",
-  "img": "https://upload.wikimedia.org/wikipedia/commons/3/37/F805_Evertsen.jpg"
+  "img": "https://upload.wikimedia.org/wikipedia/commons/3/37/F805_Evertsen.jpg",
+  "details": "This is a Frigate"
 }

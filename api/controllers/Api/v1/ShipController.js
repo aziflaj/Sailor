@@ -52,25 +52,28 @@ module.exports = {
    * @route /
    */
   create: function (req, res) {
-		var newShip = {
-			ship_type: req.body.ship_type,
-			description: req.body.description,
-      details: req.body.details,
-      img: req.body.img
-		};
+    var validator = Validator.validateShipParams(req.body);
 
-		Ship.create(newShip, function (error, created) {
-      if (error) {
-        console.log(error);
-      } else {
-        var response = {
-          status: 'success',
-          message: 'Object saved with id: ' + created.id,
-          id: created.id
-        };
-        return res.json(response);
-      }
-    });
+    if (validator.valid) {
+      Ship.create(validator.ship, function (error, created) {
+        if (error) {
+          console.log(error);
+        } else {
+          var response = {
+            status: 'success',
+            message: 'Object saved with id: ' + created.id,
+            id: created.id
+          };
+          return res.json(response);
+        }
+      });
+    } else {
+      return res.json({
+        status: "error",
+        message: validator.messages,
+        sent_item: req.body
+      });
+    }
   },
 
   /**

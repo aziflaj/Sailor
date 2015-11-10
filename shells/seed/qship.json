@@ -1,5 +1,6 @@
 {
   "ship_type": "Q-Ship",
   "description": "A commerce raider camouflaged as a merchant vessel.",
-  "img": "https://upload.wikimedia.org/wikipedia/commons/1/10/HMS_Tamarisk.jpg"
+  "img": "https://upload.wikimedia.org/wikipedia/commons/1/10/HMS_Tamarisk.jpg",
+  "details": "This is a Q-Ship"
 }
