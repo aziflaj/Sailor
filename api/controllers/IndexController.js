@@ -19,22 +19,30 @@ module.exports = {
 	 * `IndexController.create()`
 	 */
 	create: function (req, res) {
-
-    // create a new Ship object
-    var barque = {
-      shipType: 'Barque',
-      description: 'A sailing vessel with three or more masts, fore-and-aft rigged on only the aftermost.'
+    var admin = {
+      username: 'admin',
+      password: bcrypt.hashSync('admin', salt),
+      role: 'admin'
     };
 
-    Ship.create(barque, function (error, created) {
-      if (error) {
-        console.log('error');
-      }
-      console.log('Object saved with id ' + created.id);
+    var editor = {
+      username: 'editor',
+      password: bcrypt.hashSync('editor', salt),
+      role: 'editor'
+    };
 
-      return res.json({
-  			status: 'Object saved with id ' + created.id
-  		});
+    User.create([admin, editor], function (error, storedObjects) {
+      if (error) {
+        console.log(error);
+      } else {
+        var messages = [];
+        for (var i = 0; i < storedObjects.length; i++) {
+          console.log(storedObjects[i]);
+          messages.push(storedObjects[i].username + ' created with id ' + storedObjects[i].id);
+        }
+
+        return res.json(messages);
+      }
     });
 	},
 

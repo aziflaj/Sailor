@@ -115,8 +115,6 @@ module.exports = {
    * @route /:id
    */
   destroy: function (req, res) {
-    console.log(req.params.id);
-
     Ship.destroy({id: req.params.id}).exec(function (error) {
       if (error) {
         console.log(error);

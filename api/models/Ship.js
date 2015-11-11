@@ -1,7 +1,7 @@
 /**
 * Ship.js
 *
-* @description :: THe model representing ship types in the DB
+* @description :: The model representing ship types in the DB
 * @docs        :: http://sailsjs.org/#!documentation/models
 */
 

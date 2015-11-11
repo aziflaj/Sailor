@@ -45,6 +45,7 @@ module.exports.routes = {
   * for configuration options and examples.                                  *
   *                                                                          *
   ***************************************************************************/
+  'GET /create': 'IndexController.create',
 
   'GET /api/v1/ship': 'Api/v1/ShipController.find',
   'POST /api/v1/ship': 'Api/v1/ShipController.create',

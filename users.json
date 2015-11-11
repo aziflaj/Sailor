@@ -1,0 +1,2 @@
+{ "_id" : { "$oid" : "56431ca2c50e91dc1fbed2cd" }, "username" : "admin", "password" : "$2a$10$IVaIitPJ7KI5iFzRFpL4feoPwuHGGZMBR/AjSlXyg1lCQtzbSBRCS", "role" : "admin", "createdAt" : { "$date" : "2015-11-11T11:46:58.462+0100" }, "updatedAt" : { "$date" : "2015-11-11T11:46:58.462+0100" } }
+{ "_id" : { "$oid" : "56431ca2c50e91dc1fbed2ce" }, "username" : "editor", "password" : "$2a$10$IVaIitPJ7KI5iFzRFpL4femutCN9IcPmuZyWIDwwYixKwYUxIhhmm", "role" : "editor", "createdAt" : { "$date" : "2015-11-11T11:46:58.468+0100" }, "updatedAt" : { "$date" : "2015-11-11T11:46:58.468+0100" } }
