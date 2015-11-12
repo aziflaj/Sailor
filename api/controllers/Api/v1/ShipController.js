@@ -52,40 +52,52 @@ module.exports = {
    * @route /
    */
   create: function (req, res) {
-    var isAdmin = Authorizer.checkIfAdmin(req.query.api_key);
-    var isEditor = Authorizer.checkIfEditor(req.query.api_key);
-    var validRequest = isAdmin || isEditor;
-
-    if (!req.query.api_key || typeof req.query.api_key === 'undefined' || !validRequest) {
-      return res.json({
-        status: 'error',
-        message: 'Unknown API KEY!'
-      });
-    }
-
-    //else
-    var validator = Validator.validateShipParams(req.body);
-
-    if (validator.valid) {
-      Ship.create(validator.ship, function (error, created) {
-        if (error) {
-          console.log(error);
+    User.findOne({api_key: req.query.api_key}).exec(function (error, found) {
+      if (error) {
+        console.log(error);
+        return res.json({
+          status: 'error',
+          message: 'Some error occurred. Please try again later.'
+        });
+      } else if (typeof found === 'undefined') {
+        console.log('Authorizer: undefined');
+        return res.json({
+          status: 'error',
+          message: 'API KEY not found'
+        });
+      } else if (found.role === 'admin' || found.role === 'editor') {
+        var validator = Validator.validateShipParams(req.body);
+        if (validator.valid) {
+          Ship.create(validator.ship, function (error, created) {
+            if (error) {
+              console.log(error);
+              return res.json({
+                status: 'error',
+                message: 'Some error occurred. Please try again later.'
+              });
+            } else {
+              var response = {
+                status: 'success',
+                message: 'Object saved with id: ' + created.id,
+                id: created.id
+              };
+              return res.json(response);
+            }
+          });
         } else {
-          var response = {
-            status: 'success',
-            message: 'Object saved with id: ' + created.id,
-            id: created.id
-          };
-          return res.json(response);
+          return res.json({
+            status: "error",
+            message: validator.messages,
+            sent_item: req.body
+          });
         }
-      });
-    } else {
-      return res.json({
-        status: "error",
-        message: validator.messages,
-        sent_item: req.body
-      });
-    }
+      } else {
+        return res.json({
+          status: 'error',
+          message: 'You don\'t have access'
+        });
+      }
+    });
   },
 
   /**
