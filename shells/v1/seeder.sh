@@ -1,8 +1,8 @@
 #!/bin/bash
 
-DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/seed/*.json"
+if [ $# -ne 2 ]; then
+  echo "Usage: $0 <json-file> <api_key>"
+  exit
+fi
 
-for f in $DIR; do
-  curl -X POST -d @$f http://localhost:1337/api/v1/ship --header "Content-Type:application/json"
-  echo -e "\n"
-done
+curl -X POST -d @$1 http://localhost:1337/api/v1/ship?api_key=$2 --header "Content-Type:application/json"

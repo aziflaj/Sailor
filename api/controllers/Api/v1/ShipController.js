@@ -33,7 +33,7 @@ module.exports = {
    */
   findOne: function (req, res) {
     console.log(req.params.id);
-    Ship.find({id: req.params.id}).exec(function (error, result) {
+    Ship.findOne({id: req.params.id}).exec(function (error, result) {
       if (error) {
         console.log(error);
       } else {
@@ -52,6 +52,18 @@ module.exports = {
    * @route /
    */
   create: function (req, res) {
+    var isAdmin = Authorizer.checkIfAdmin(req.query.api_key);
+    var isEditor = Authorizer.checkIfEditor(req.query.api_key);
+    var validRequest = isAdmin || isEditor;
+
+    if (!req.query.api_key || typeof req.query.api_key === 'undefined' || !validRequest) {
+      return res.json({
+        status: 'error',
+        message: 'Unknown API KEY!'
+      });
+    }
+
+    //else
     var validator = Validator.validateShipParams(req.body);
 
     if (validator.valid) {
@@ -82,6 +94,18 @@ module.exports = {
    * @route /:id
    */
   update: function (req, res) {
+    var isAdmin = Authorizer.checkIfAdmin(req.query.api_key);
+    var isEditor = Authorizer.checkIfEditor(req.query.api_key);
+    var validRequest = isAdmin || isEditor;
+
+    if (!req.query.api_key || typeof req.query.api_key === 'undefined' || !validRequest) {
+      return res.json({
+        status: 'error',
+        message: 'Unknown API KEY!'
+      });
+    }
+
+    //else
     Ship.find({id: req.params.id}).exec(function (error, found) {
       if (error) {
         console.log(error);
@@ -115,14 +139,36 @@ module.exports = {
    * @route /:id
    */
   destroy: function (req, res) {
-    Ship.destroy({id: req.params.id}).exec(function (error) {
+    User.findOne({api_key: req.query.api_key}).exec(function (error, found) {
       if (error) {
+        console.log('Authorizer: error');
         console.log(error);
+        return false;
+      } else if (typeof found === 'undefined') {
+        console.log('Authorizer: undefined');
+        return res.json({
+          status: 'error',
+          message: 'API KEY not known'
+        });
       } else {
-        var response = {
-          status: 'deleted'
-        };
-        return res.json(response);
+        if (found.role === 'admin') {
+          Ship.destroy({id: req.params.id}).exec(function (error) {
+            if (error) {
+              console.log(error);
+            } else {
+              var response = {
+                status: 'deleted'
+              };
+              return res.json(response);
+            }
+          });
+        } else {
+          console.log('Authorizer: not an admin');
+          return res.json({
+            status: 'error',
+            message: 'Not an admin'
+          });
+        }
       }
     });
   }
