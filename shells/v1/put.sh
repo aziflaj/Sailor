@@ -6,3 +6,4 @@ if [ $# -ne 3 ]; then
 fi
 
 curl -X PUT -d @$1 http://localhost:1337/api/v1/ship/$2?api_key=$3 --header "Content-Type:application/json"
+echo

@@ -93,44 +93,59 @@ module.exports = {
 	 * @method PUT
    * @route /:id
    */
-  update: function (req, res) {
-    var isAdmin = Authorizer.checkIfAdmin(req.query.api_key);
-    var isEditor = Authorizer.checkIfEditor(req.query.api_key);
-    var validRequest = isAdmin || isEditor;
-
-    if (!req.query.api_key || typeof req.query.api_key === 'undefined' || !validRequest) {
-      return res.json({
-        status: 'error',
-        message: 'Unknown API KEY!'
-      });
-    }
-
-    //else
-    Ship.find({id: req.params.id}).exec(function (error, found) {
-      if (error) {
-        console.log(error);
-      } else {
-        var item = found.pop();
-
-        item.ship_type = req.body.ship_type || item.ship_type;
-        item.description = req.body.description || item.description;
-        item.details = req.body.details || item.details;
-        item.img = req.body.img || item.img;
-
-        item.save(function (err, s) {
-          if (err) {
-            console.log(err);
-          } else {
-            var response = {
-              status: 'saved',
-              ship: item
-            };
-            return res.json(response);
-          }
-        });
-      }
-    });
-  },
+   update: function (req, res) {
+     User.findOne({api_key: req.query.api_key}).exec(function (error, found) {
+       if (error) {
+         console.log(error);
+         return res.json({
+           status: 'error',
+           message: 'Some error occurred. Please try again later.'
+         });
+       } else if (typeof found === 'undefined') {
+         console.log('Authorizer: undefined');
+         return res.json({
+           status: 'error',
+           message: 'API KEY not known'
+         });
+       } else if (found.role === 'admin' || found.role === 'editor') {
+         Ship.find({id: req.params.id}).exec(function (error, found) {
+           if (error) {
+             console.log(error);
+             return res.json({
+               status: 'error',
+               message: 'Some error occurred. Please try again later.'
+             });
+           } else {
+             var item = found.pop();
+             item.ship_type = req.body.ship_type || item.ship_type;
+             item.description = req.body.description || item.description;
+             item.details = req.body.details || item.details;
+             item.img = req.body.img || item.img;
+             item.save(function (err, s) {
+               if (err) {
+                 console.log(err);
+                 return res.json({
+                   status: 'error',
+                   message: 'Some error occurred. Please try again later.'
+                 });
+               } else {
+                 var response = {
+                   status: 'saved',
+                   ship: item
+                 };
+                 return res.json(response);
+               }
+             });
+           }
+         });
+       } else {
+         return res.json({
+           status: 'error',
+           message: "You don't have access!"
+         });
+       }
+     });
+   },
 
 
   /**
@@ -143,7 +158,6 @@ module.exports = {
       if (error) {
         console.log('Authorizer: error');
         console.log(error);
-        return false;
       } else if (typeof found === 'undefined') {
         console.log('Authorizer: undefined');
         return res.json({
