@@ -23,6 +23,13 @@ module.exports = {
       type: 'string',
       enum: ['admin', 'editor'],
       defaultsTo: 'editor'
+    },
+
+    api_key: {
+      type: 'string',
+      required: true,
+      index: true,
+      unique: true
     }
   },
 
